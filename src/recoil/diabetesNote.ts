@@ -51,3 +51,8 @@ export const initialState = atom<IData>({
     },
   },
 })
+
+export const dateArrState = atom({
+  key: 'dateArrState',
+  default: [],
+})
