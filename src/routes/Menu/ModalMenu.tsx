@@ -24,12 +24,14 @@ const ModalMenu = ({ handleClose }: IProps) => {
             <span>혈당</span>
           </div>
         </Link>
-        <div className={styles.buttonBox}>
-          <button type='button'>
-            <SyringeIcon />
-          </button>
-          <span>투약</span>
-        </div>
+        <Link to='/drug'>
+          <div className={styles.buttonBox}>
+            <button type='button'>
+              <SyringeIcon />
+            </button>
+            <span>투약</span>
+          </div>
+        </Link>
         <Link to='/diet'>
           <div className={styles.buttonBox}>
             <button type='button'>

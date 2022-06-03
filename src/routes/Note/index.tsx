@@ -37,13 +37,18 @@ const Note = () => {
               <div className={styles.div2}>혈당</div>
               <div className={styles.div3}>식사</div>
               <div className={styles.div4}>{store(date).breakfast.before === 0 || store(date).breakfast.before}</div>
-              <div className={styles.div5}>-</div>
+              <div className={styles.div5}>
+                {store(date).breakfast.medication === '' || store(date).breakfast.medication}
+              </div>
               <div className={styles.div6}>{store(date).breakfast.after === 0 || store(date).breakfast.after}</div>
               <div className={styles.div7}>{store(date).lunch.before === 0 || store(date).lunch.before}</div>
-              <div className={styles.div8}>-</div>
+              <div className={styles.div8}>{store(date).lunch.medication === '' || store(date).lunch.medication}</div>
               <div className={styles.div9}>{store(date).lunch.after === 0 || store(date).lunch.after}</div>
               <div className={styles.div10}>{store(date).dinner.before === 0 || store(date).dinner.before}</div>
-              <div className={styles.div11}>-</div>
+              <div className={styles.div11}>
+                {' '}
+                {store(date).dinner.medication === '' || store(date).dinner.medication}
+              </div>
               <div className={styles.div12}>{store(date).dinner.after === 0 || store(date).dinner.after}</div>
               <div className={styles.div13}>{store(date).breakfast.menu.map((el: any) => `∙ ${el.name} `)}</div>
               <div className={styles.div14}>{store(date).lunch.menu.map((el: any) => `∙ ${el.name} `)}</div>

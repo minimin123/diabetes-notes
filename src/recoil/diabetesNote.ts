@@ -13,7 +13,7 @@ interface IData {
 interface IElement {
   before: number
   after: number
-  medication: number
+  medication: string
   menu: {}[]
   exercise: string
   memo: string
@@ -24,7 +24,7 @@ export const initialState = atom<IData>({
     breakfast: {
       before: 0,
       after: 0,
-      medication: 0,
+      medication: '',
       menu: [],
       exercise: '',
       memo: '',
@@ -32,7 +32,7 @@ export const initialState = atom<IData>({
     lunch: {
       before: 0,
       after: 0,
-      medication: 0,
+      medication: '',
       menu: [],
       exercise: '',
       memo: '',
@@ -40,7 +40,7 @@ export const initialState = atom<IData>({
     dinner: {
       before: 0,
       after: 0,
-      medication: 0,
+      medication: '',
       menu: [],
       exercise: '',
       memo: '',
@@ -50,9 +50,4 @@ export const initialState = atom<IData>({
       memo: '',
     },
   },
-})
-
-export const dateArrState = atom({
-  key: 'dateArrState',
-  default: [],
 })

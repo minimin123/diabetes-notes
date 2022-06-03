@@ -6,6 +6,7 @@ import GNB from 'routes/_shared/GNB'
 import Diet from './Diet'
 import BloodGlucose from './BloodGlucose'
 import Note from './Note'
+import Drug from './Drug'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='note' element={<Note />} />
           <Route path='diet' element={<Diet />} />
           <Route path='bloodGlucose' element={<BloodGlucose />} />
+          <Route path='drug' element={<Drug />} />
           <Route path='*' element={<div>404</div>} />
         </Routes>
       </div>

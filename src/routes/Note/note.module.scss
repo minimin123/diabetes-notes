@@ -191,6 +191,10 @@
       .div5 {
         grid-area: 1 / 4 / 2 / 5;
         padding: 5px;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         border: 1px solid colors.$D_GRAY4;
       }
 
@@ -209,6 +213,10 @@
       .div8 {
         grid-area: 1 / 7 / 2 / 8;
         padding: 5px;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         border: 1px solid colors.$D_GRAY4;
       }
 
@@ -227,6 +235,10 @@
       .div11 {
         grid-area: 1 / 10 / 2 / 11;
         padding: 5px;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         border: 1px solid colors.$D_GRAY4;
       }
 
