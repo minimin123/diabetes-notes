@@ -1,0 +1,6 @@
+export { ReactComponent as SearchIcon } from './search.svg'
+export { ReactComponent as FoodIcon } from './food.svg'
+export { ReactComponent as BloodIcon } from './blood.svg'
+export { ReactComponent as SyringeIcon } from './syringe.svg'
+export { ReactComponent as ExerciseIcon } from './exercise.svg'
+export { ReactComponent as MemoIcon } from './memo.svg'

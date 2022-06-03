@@ -24,5 +24,11 @@
       color: colors.$D_GRAY2;
       cursor: pointer;
     }
+
+    a {
+      &.isActive {
+        color: colors.$MAIN;
+      }
+    }
   }
 }

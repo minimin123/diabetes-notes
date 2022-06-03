@@ -1,0 +1,60 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.wrapper {
+  width: 600px;
+  height: 310px;
+  color: colors.$D_GRAY1;
+  background-color: colors.$WHITE;
+  border-radius: 5px;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid colors.$D_GRAY3;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+
+    .buttonBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    span {
+      font-weight: 600;
+    }
+
+    button {
+      margin: 10px;
+
+      :hover {
+        transition: transform 0.5s; /* 시간 설정 */
+        transform: scale(1.1); /* 이미지 확대 */
+      }
+
+      svg {
+        width: 70px;
+        height: 70px;
+        padding: 10px;
+        border: 2px solid colors.$MAIN;
+        border-radius: 10px;
+        fill: colors.$MAIN;
+
+        :hover {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
