@@ -2,26 +2,26 @@
 @use '/src/styles/mixins/position';
 
 .gnb {
-  position: relative;
   display: flex;
   justify-content: center;
-  width: 1040px;
+  width: 100%;
   height: 56px;
   margin: 0 auto;
   border-bottom: 1px solid colors.$GRAYE;
 
   ul {
-    @include position.absolute(50% auto auto 20px);
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 1024px;
     font-size: 20px;
     font-weight: 600;
-    color: colors.$HUMANS_LOGO;
-    transform: translateY(-50%);
+    color: colors.$D_GRAY1;
 
     li {
-      margin-right: 20px;
+      margin: 0 0 0 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: colors.$D_GRAY2;
       cursor: pointer;
     }
   }
