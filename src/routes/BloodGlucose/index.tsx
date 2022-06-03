@@ -1,9 +1,11 @@
 import _ from 'lodash'
 import store from 'storejs'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
-import { ChangeEvent, FormEventHandler, MouseEvent, useState } from 'react'
+import { ChangeEvent, FormEventHandler, MouseEvent, useEffect, useState } from 'react'
 import dayjs from 'dayjs'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import styles from './bloodGlucose.module.scss'
 import DatePicker from 'components/DatePicker/DatePicker'
@@ -11,7 +13,7 @@ import { BloodIcon } from 'assets/svgs'
 import { useNavigate } from 'react-router-dom'
 
 const BloodGlucose = () => {
-  const [dailyData, setDailyData] = useRecoilState(initialState)
+  const [, setDailyData] = useRecoilState(initialState)
   const [date, setDate] = useState<undefined | Date>(undefined)
   const [text, setText] = useState('')
   const [meal, setMeal] = useState('')
@@ -20,6 +22,7 @@ const BloodGlucose = () => {
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
   }
+  const resetData = useResetRecoilState(initialState)
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement> | FormEventHandler<HTMLFormElement> | any) => {
     e.preventDefault()
@@ -34,7 +37,14 @@ const BloodGlucose = () => {
     store.set(dayjs(date).format('YYYY-MM-DD'), newDailyData)
     setMeal('')
     setTime('')
+    toast.success('혈당량이 등록되었습니다.', { position: 'top-center', hideProgressBar: true })
+    resetData()
   }
+
+  useEffect(() => {
+    setMeal('')
+    setTime('')
+  }, [date])
 
   const navigate = useNavigate()
   const handleXClick = () => {
@@ -43,6 +53,7 @@ const BloodGlucose = () => {
 
   return (
     <div className={styles.wrapper}>
+      <ToastContainer />
       <main>
         <h1>나의수첩</h1>
         <h2>

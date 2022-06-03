@@ -45,9 +45,9 @@ const Note = () => {
               <div className={styles.div10}>{store(date).dinner.before === 0 || store(date).dinner.before}</div>
               <div className={styles.div11}>-</div>
               <div className={styles.div12}>{store(date).dinner.after === 0 || store(date).dinner.after}</div>
-              <div className={styles.div13}>{store(date).breakfast.menu.map((el: any) => el.name)}</div>
-              <div className={styles.div14}>{store(date).lunch.menu.map((el: any) => el.name)}</div>
-              <div className={styles.div15}>{store(date).dinner.menu.map((el: any) => el.name)}</div>
+              <div className={styles.div13}>{store(date).breakfast.menu.map((el: any) => `∙ ${el.name} `)}</div>
+              <div className={styles.div14}>{store(date).lunch.menu.map((el: any) => `∙ ${el.name} `)}</div>
+              <div className={styles.div15}>{store(date).dinner.menu.map((el: any) => `∙ ${el.name} `)}</div>
             </div>
           ))}
         </div>

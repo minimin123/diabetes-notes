@@ -18,7 +18,9 @@ const DatePicker = ({ date, setDate }: IProps) => {
     setDate(dateValue)
     if (store.has(`${dayjs(dateValue).format('YYYY-MM-DD')}`))
       setDailyData(store.get(dayjs(dateValue).format('YYYY-MM-DD')))
-    else store.set(dayjs(dateValue).format('YYYY-MM-DD'), dailyData)
+    else {
+      store.set(dayjs(dateValue).format('YYYY-MM-DD'), dailyData)
+    }
   }
 
   return <Calendar onChange={handleDateChange} value={date} view='month' />

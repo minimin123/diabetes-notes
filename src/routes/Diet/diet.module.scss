@@ -1,7 +1,186 @@
 @use '/src/styles/constants/colors';
 
-.dietList {
-  table {
-    width: 900px;
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: colors.$D_GRAY4;
+
+  svg {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    margin-right: 10px;
+    fill: colors.$MAIN;
+  }
+
+  main {
+    position: relative;
+    max-width: 1024px;
+    padding: 30px 0;
+    margin: 0 auto;
+
+    h1 {
+      padding-bottom: 20px;
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    form {
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid colors.$D_GRAY3;
+      }
+
+      .submit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 50px;
+        font-size: 16px;
+        color: colors.$WHITE;
+        background-color: colors.$MAIN;
+      }
+    }
+  }
+
+  .contentsBox {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: colors.$D_GRAY1;
+    background-color: colors.$WHITE;
+
+    .inputsBox {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .xButton {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: 20px;
+      }
+
+      h3 {
+        padding-bottom: 30px;
+        font-size: 22px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .mealButtons {
+        button {
+          width: 100px;
+          height: 100px;
+          margin: 20px;
+          font-size: 20px;
+          color: colors.$MAIN;
+          border: 2px solid colors.$MAIN;
+          border-radius: 5px;
+
+          &:hover {
+            background-color: colors.$SUB;
+          }
+        }
+      }
+    }
+  }
+
+  .searchList {
+    padding: 20px 10px;
+    margin-top: 20px;
+    background-color: colors.$WHITE;
+
+    h2 {
+      display: flex;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      text-align: center;
+
+      thead {
+        height: 30px;
+        line-height: 30px;
+        color: colors.$MAIN;
+        background-color: colors.$SUB;
+      }
+
+      tbody {
+        tr {
+          height: 30px;
+          line-height: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .nutrition {
+      display: flex;
+      justify-content: space-between;
+
+      .chart {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        p {
+          color: colors.$D_GRAY2;
+          text-align: center;
+        }
+
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          font-size: 20px;
+          color: colors.$D_GRAY1;
+          transform: translate(-50%, -100%);
+        }
+      }
+    }
+
+    ul {
+      position: relative;
+      width: 50%;
+
+      li {
+        margin: 20px;
+        font-size: 20px;
+        color: colors.$MAIN;
+        border-bottom: 2px solid colors.$MAIN;
+      }
+
+      button {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 200px;
+        height: 50px;
+        margin: 10px;
+        font-size: 16px;
+        color: colors.$WHITE;
+        background-color: colors.$MAIN;
+        transform: translate(-50%);
+      }
+    }
   }
 }
