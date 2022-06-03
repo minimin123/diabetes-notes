@@ -68,7 +68,9 @@ const Diet = () => {
   }
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.currentTarget.value)
-    store.set(dayjs(e.currentTarget.value).format('YYYY-MM-DD'), dailyData)
+    if (store.has(`${dayjs(e.currentTarget.value).format('YYYY-MM-DD')}`))
+      setDailyData(store.get(dayjs(e.currentTarget.value).format('YYYY-MM-DD')))
+    else store.set(dayjs(e.currentTarget.value).format('YYYY-MM-DD'), dailyData)
   }
 
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
