@@ -198,7 +198,7 @@ const Diet = () => {
                   innerRadius={80}
                   labelRadius={100}
                   style={{ labels: { fill: 'white', fontSize: 16, fontWeight: 'bold' } }}
-                  colorScale={['tomato', 'orange', 'gold']}
+                  colorScale={['#ff839e', '#ffd67c', '#64b4ef']}
                   animate={{
                     duration: 500,
                   }}
