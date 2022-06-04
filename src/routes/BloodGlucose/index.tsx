@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import store from 'storejs'
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
 import { ChangeEvent, FormEventHandler, MouseEvent, useEffect, useState } from 'react'
 import dayjs from 'dayjs'

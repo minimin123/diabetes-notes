@@ -1,5 +1,5 @@
 import Calendar from 'react-calendar'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
 
 import './calendar.scss'
@@ -13,12 +13,13 @@ interface IProps {
 
 const DatePicker = ({ date, setDate }: IProps) => {
   const [dailyData, setDailyData] = useRecoilState(initialState)
-
+  const resetData = useResetRecoilState(initialState)
   const handleDateChange = (dateValue: Date) => {
     setDate(dateValue)
     if (store.has(`${dayjs(dateValue).format('YYYY-MM-DD')}`))
       setDailyData(store.get(dayjs(dateValue).format('YYYY-MM-DD')))
     else {
+      resetData()
       store.set(dayjs(dateValue).format('YYYY-MM-DD'), dailyData)
     }
   }
