@@ -38,11 +38,13 @@ interface INutritionDataRes {
 }
 
 export const getNutritionDataApi = (params: Params) => {
+  const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy/'
+
   const URL = '1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1'
   const API_KEY = process.env.REACT_APP_API_KEY
 
   try {
-    const res = axios.get<INutritionDataRes>(`${URL}?ServiceKey=${API_KEY}&type=json`, {
+    const res = axios.get<INutritionDataRes>(`${PROXY}${URL}?ServiceKey=${API_KEY}&type=json`, {
       params,
     })
     return res
