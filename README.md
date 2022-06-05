@@ -1,5 +1,5 @@
-# diabetes-notes
-[당뇨수첩] 일일 혈당량과 식사, 투약 기록을 입력하고 관리하세요.
+# 당뇨수첩
+ 일일 혈당량과 식사, 투약 기록을 입력하고 관리하세요.
 - URL: https://diabetes-note.netlify.app/
 
 ## ✏️기능
@@ -12,56 +12,107 @@
 
 ## 
 📦src
+
  ┣ 📂assets
+ 
  ┃ ┣ 📂svgs
+ 
  ┣ 📂components
+ 
  ┃ ┣ 📂DatePicker
+ 
  ┃ ┃ ┣ 📜DatePicker.tsx
+ 
  ┃ ┃ ┗ 📜calendar.scss
+ 
  ┃ ┣ 📂Modal
+ 
  ┃ ┃ ┣ 📜index.tsx
+ 
  ┃ ┃ ┗ 📜modal.module.scss
+ 
  ┃ ┗ 📜Portal.tsx
+ 
  ┣ 📂hooks
+ 
  ┃ ┣ 📂worker
+ 
  ┃ ┃ ┣ 📜index.tsx
+ 
  ┃ ┃ ┣ 📜useAxios.tsx
+ 
  ┃ ┃ ┣ 📜useAxiosCore.tsx
+ 
  ┃ ┃ ┗ 📜useOnClickOutside.tsx
+ 
  ┃ ┣ 📜.DS_Store
+ 
  ┃ ┗ 📜index.tsx
+ 
  ┣ 📂recoil
+ 
  ┃ ┗ 📜diabetesNote.ts
+ 
  ┣ 📂routes
+ 
  ┃ ┣ 📂BloodGlucose
+ 
  ┃ ┃ ┣ 📜bloodGlucose.module.scss
+ 
  ┃ ┃ ┗ 📜index.tsx
+ 
  ┃ ┣ 📂Diet
+ 
  ┃ ┃ ┣ 📜diet.module.scss
+ 
  ┃ ┃ ┣ 📜index.tsx
+ 
  ┃ ┃ ┣ 📜nutritionChart.tsx
+ 
  ┃ ┃ ┗ 📜searchList.tsx
+ 
  ┃ ┣ 📂Drug
+ 
  ┃ ┃ ┣ 📜drug.module.scss
+ 
  ┃ ┃ ┗ 📜index.tsx
+ 
  ┃ ┣ 📂Menu
+ 
  ┃ ┃ ┣ 📜ModalMenu.tsx
+ 
  ┃ ┃ ┣ 📜index.tsx
+ 
  ┃ ┃ ┣ 📜menu.module.scss
+ 
  ┃ ┃ ┗ 📜modalMenu.module.scss
+ 
  ┃ ┣ 📂Note
+ 
  ┃ ┃ ┣ 📜index.tsx
+ 
  ┃ ┃ ┗ 📜note.module.scss
+ 
  ┃ ┣ 📂_shared
+ 
  ┃ ┃ ┗ 📂GNB
+ 
  ┃ ┃ ┃ ┣ 📜gnb.module.scss
+ 
  ┃ ┃ ┃ ┗ 📜index.tsx
+ 
  ┃ ┣ 📜index.jsx
+ 
  ┃ ┗ 📜routes.module.scss
+ 
  ┣ 📂services
+ 
  ┃ ┗ 📜diabetesNote.ts
+ 
  ┣ 📂styles
+ 
  ┣ 📂utils
+ 
  ┗  📜index.tsx
 
 
