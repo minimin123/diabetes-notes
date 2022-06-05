@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/proxy/*"
+  to = "http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1'"  
+  status = 200
+  force = true
