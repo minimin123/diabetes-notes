@@ -1,4 +1,4 @@
-import { BloodIcon, ExerciseIcon, FoodIcon, MemoIcon, SyringeIcon } from 'assets/svgs'
+import { BloodIcon, CloseIcon, ExerciseIcon, FoodIcon, MemoIcon, SyringeIcon } from 'assets/svgs'
 import { Link } from 'react-router-dom'
 import styles from './modalMenu.module.scss'
 
@@ -12,7 +12,7 @@ const ModalMenu = ({ handleClose }: IProps) => {
       <div className={styles.title}>
         <h2>기록 입력하기</h2>
         <button type='button' onClick={handleClose}>
-          X
+          <CloseIcon />
         </button>
       </div>
       <section>

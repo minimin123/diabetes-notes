@@ -11,6 +11,10 @@ const targetRange = (glucose: number, category: string) => {
   return glucose
 }
 
+interface IMenu {
+  name: string
+}
+
 const Note = () => {
   const dummyData = useRecoilValue(dummyState)
   store.set('2022-06-05', dummyData)
@@ -74,9 +78,9 @@ const Note = () => {
               <div className={styles.div12}>
                 {store(date).dinner.after === 0 || targetRange(store(date).dinner.after, '식후')}
               </div>
-              <div className={styles.div13}>{store(date).breakfast.menu.map((el: any) => `∙ ${el.name} `)}</div>
-              <div className={styles.div14}>{store(date).lunch.menu.map((el: any) => `∙ ${el.name} `)}</div>
-              <div className={styles.div15}>{store(date).dinner.menu.map((el: any) => `∙ ${el.name} `)}</div>
+              <div className={styles.div13}>{store(date).breakfast.menu.map((el: IMenu) => `∙ ${el.name} `)}</div>
+              <div className={styles.div14}>{store(date).lunch.menu.map((el: IMenu) => `∙ ${el.name} `)}</div>
+              <div className={styles.div15}>{store(date).dinner.menu.map((el: IMenu) => `∙ ${el.name} `)}</div>
             </div>
           ))}
         </section>

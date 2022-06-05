@@ -74,7 +74,11 @@
         position: absolute;
         top: 5px;
         right: 10px;
-        font-size: 20px;
+
+        & svg {
+          width: 50%;
+          fill: colors.$D_GRAY2;
+        }
       }
 
       h3 {

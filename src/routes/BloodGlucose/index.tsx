@@ -2,14 +2,14 @@ import _ from 'lodash'
 import store from 'storejs'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
-import { ChangeEvent, FormEventHandler, MouseEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import styles from './bloodGlucose.module.scss'
 import DatePicker from 'components/DatePicker/DatePicker'
-import { BloodIcon } from 'assets/svgs'
+import { BloodIcon, CloseIcon } from 'assets/svgs'
 import { useNavigate } from 'react-router-dom'
 
 const BloodGlucose = () => {
@@ -24,7 +24,7 @@ const BloodGlucose = () => {
   }
   const resetData = useResetRecoilState(initialState)
 
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement> | FormEventHandler<HTMLFormElement> | any) => {
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newDailyData = _.cloneDeep(store.get(`${dayjs(date).format('YYYY-MM-DD')}`))
     if (meal === '아침' && time === '식전') newDailyData.breakfast.before = Number(text)
@@ -66,7 +66,7 @@ const BloodGlucose = () => {
           </div>
           <div className={styles.inputsBox}>
             <button type='button' className={styles.xButton} onClick={handleXClick}>
-              X
+              <CloseIcon />
             </button>
             <h3>{date ? `${dayjs(date).format('M월 D일')}의 ${meal} ${time} 혈당` : '날짜를 먼저 선택해주세요.'}</h3>
             {date && !meal && (

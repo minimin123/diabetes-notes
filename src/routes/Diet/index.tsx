@@ -1,23 +1,23 @@
-import { useQuery } from 'react-query'
 import _ from 'lodash'
-import { VictoryPie, VictoryTooltip } from 'victory'
 import store from 'storejs'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import dayjs from 'dayjs'
+import DatePicker from 'components/DatePicker/DatePicker'
+import { useNavigate } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { useRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { FormEvent, MouseEvent, useEffect, useState } from 'react'
 
 import { getNutritionDataApi } from 'services/diabetesNote'
 
 import styles from './diet.module.scss'
-import { FormEventHandler, useEffect, useState } from 'react'
-import dayjs from 'dayjs'
-import { FoodIcon } from 'assets/svgs'
-import DatePicker from 'components/DatePicker/DatePicker'
-import { useNavigate } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { CloseIcon, FoodIcon } from 'assets/svgs'
+import SearchList from './searchList'
 
 const Diet = () => {
-  const resetData = useResetRecoilState(initialState)
   const [dailyData, setDailyData] = useRecoilState(initialState)
   const [date, setDate] = useState<undefined | Date>(undefined)
   const [totalCalorie, setTotalCalorie] = useState(0)
@@ -63,26 +63,17 @@ const Diet = () => {
     setSelectedMenu((prev) => prev.concat(newData.name))
   }
 
-  const handleDelete = () => {
-    resetData()
-    setTotalCalorie(0)
-    setTotalCarbs(0)
-    setTotalProtein(0)
-    setTotalFat(0)
-    setSelectedMenu([])
-  }
-
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFoodName(e.target.value)
   }
 
-  const handleSearchClick = (e: React.MouseEvent<HTMLButtonElement> | FormEventHandler<HTMLFormElement> | any) => {
+  const handleSearchClick = (e: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setText(foodName)
     refetch()
   }
 
-  const handleSubmmit = () => {
+  const handleSubmit = () => {
     store.set(dayjs(date).format('YYYY-MM-DD'), dailyData)
     setTotalCalorie(0)
     setTotalCarbs(0)
@@ -91,6 +82,7 @@ const Diet = () => {
     setSelectedMenu([])
     toast.success('식단이 등록되었습니다.', { position: 'top-center', hideProgressBar: true })
   }
+
   const navigate = useNavigate()
   const handleXClick = () => {
     navigate('/note')
@@ -117,7 +109,7 @@ const Diet = () => {
           </div>
           <div className={styles.inputsBox}>
             <button type='button' className={styles.xButton} onClick={handleXClick}>
-              X
+              <CloseIcon />
             </button>
             <h3>{date ? `${dayjs(date).format('M월 D일')}의 ${meal} 식단` : '날짜를 먼저 선택해주세요.'}</h3>
             {date && !meal && (
@@ -155,67 +147,40 @@ const Diet = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.map((item, index) => (
-                  <tr
-                    key={index}
-                    onClick={handleDietClick}
-                    data-name={item.DESC_KOR}
-                    data-calories={item.NUTR_CONT1}
-                    data-carbs={item.NUTR_CONT2}
-                    data-protein={item.NUTR_CONT3}
-                    data-fat={item.NUTR_CONT4}
-                  >
-                    <td>{item.DESC_KOR}</td>
-                    <td>{item.SERVING_WT}</td>
-                    <td>{item.NUTR_CONT1}</td>
-                    <td>{item.NUTR_CONT2}</td>
-                    <td>{item.NUTR_CONT3}</td>
-                    <td>{item.NUTR_CONT4}</td>
-                  </tr>
-                ))}
+                {data?.map((item, i) => {
+                  const key = `menu-${i}`
+                  return (
+                    <tr
+                      key={key}
+                      onClick={handleDietClick}
+                      data-name={item.DESC_KOR}
+                      data-calories={item.NUTR_CONT1}
+                      data-carbs={item.NUTR_CONT2}
+                      data-protein={item.NUTR_CONT3}
+                      data-fat={item.NUTR_CONT4}
+                    >
+                      <td>{item.DESC_KOR}</td>
+                      <td>{item.SERVING_WT}</td>
+                      <td>{item.NUTR_CONT1}</td>
+                      <td>{item.NUTR_CONT2}</td>
+                      <td>{item.NUTR_CONT3}</td>
+                      <td>{item.NUTR_CONT4}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </section>
         )}
         {selectedMenu.length > 0 && (
-          <div className={styles.searchList}>
-            <section className={styles.nutrition}>
-              <ul>
-                선택한 식품
-                {selectedMenu.map((item: any) => (
-                  <li key={item}>{item}</li>
-                ))}
-                <button type='button' onClick={handleDelete}>
-                  초기화하기
-                </button>
-                <button type='button' onClick={handleSubmmit}>
-                  등록하기
-                </button>
-              </ul>
-              <div className={styles.chart}>
-                <span>{totalCalorie} kcal</span>
-                <VictoryPie
-                  padAngle={2}
-                  cornerRadius={4}
-                  innerRadius={70}
-                  labelRadius={105}
-                  style={{ labels: { fill: 'white', fontSize: 16 } }}
-                  colorScale={['#ff839e', '#ffd67c', '#64b4ef']}
-                  animate={{
-                    duration: 500,
-                  }}
-                  data={[
-                    { x: '탄', y: ((totalCarbs * 4) / totalCalorie) * 100 },
-                    { x: '단', y: ((totalProtein * 4) / totalCalorie) * 100 },
-                    { x: '지', y: ((totalFat * 9) / totalCalorie) * 100 },
-                  ]}
-                />
-                <p>
-                  탄수화물{totalCarbs}g 단백질{totalProtein}g 지방{totalFat}g
-                </p>
-              </div>
-            </section>
-          </div>
+          <SearchList
+            selectedMenu={selectedMenu}
+            handleSubmit={handleSubmit}
+            totalCalorie={totalCalorie}
+            totalCarbs={totalCarbs}
+            totalProtein={totalProtein}
+            totalFat={totalFat}
+          />
         )}
       </main>
     </div>
