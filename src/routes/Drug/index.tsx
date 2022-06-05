@@ -94,10 +94,3 @@ const Drug = () => {
 }
 
 export default Drug
-
-// const Drug = () => {
-
-//   return <div>상은이 하이!!@!</div>
-// }
-
-// export default Drug

@@ -14,7 +14,7 @@ const App = () => {
       <GNB />
       <div className={styles.app}>
         <Routes>
-          <Route path='/' element={<Diet />} />
+          <Route path='/' element={<Note />} />
           <Route path='note' element={<Note />} />
           <Route path='diet' element={<Diet />} />
           <Route path='bloodGlucose' element={<BloodGlucose />} />

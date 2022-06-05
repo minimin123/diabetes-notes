@@ -1,5 +1,4 @@
-import { NavLink } from 'react-router-dom'
-import cx from 'classnames'
+import { Link } from 'react-router-dom'
 import styles from './gnb.module.scss'
 
 const GNB = () => {
@@ -8,11 +7,8 @@ const GNB = () => {
       <ul>
         당뇨수첩
         <li>
-          <NavLink to='note' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            나의수첩
-          </NavLink>
+          <Link to='note'>나의수첩</Link>
         </li>
-        <li>분석하기</li>
       </ul>
     </nav>
   )

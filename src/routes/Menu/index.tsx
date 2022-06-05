@@ -7,7 +7,7 @@ import Modal from 'components/Modal'
 
 import styles from './menu.module.scss'
 
-export default function Menu() {
+const Menu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const ref = useRef(null)
   useOnClickOutside(ref, () => setIsOpen(false))
@@ -30,3 +30,5 @@ export default function Menu() {
     </>
   )
 }
+
+export default Menu

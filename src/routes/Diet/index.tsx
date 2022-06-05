@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import _ from 'lodash'
-import { VictoryPie } from 'victory'
+import { VictoryPie, VictoryTooltip } from 'victory'
 import store from 'storejs'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
@@ -193,11 +193,13 @@ const Diet = () => {
                 </button>
               </ul>
               <div className={styles.chart}>
-                <span>{totalCalorie}kcal</span>
+                <span>{totalCalorie} kcal</span>
                 <VictoryPie
-                  innerRadius={80}
-                  labelRadius={100}
-                  style={{ labels: { fill: 'white', fontSize: 16, fontWeight: 'bold' } }}
+                  padAngle={2}
+                  cornerRadius={4}
+                  innerRadius={70}
+                  labelRadius={105}
+                  style={{ labels: { fill: 'white', fontSize: 16 } }}
                   colorScale={['#ff839e', '#ffd67c', '#64b4ef']}
                   animate={{
                     duration: 500,

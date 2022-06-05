@@ -1,3 +1,5 @@
+import { useRecoilValue } from 'recoil'
+import { dummyState } from 'recoil/diabetesNote'
 import Menu from 'routes/Menu'
 import store from 'storejs'
 import styles from './note.module.scss'
@@ -10,6 +12,8 @@ const targetRange = (glucose: number, category: string) => {
 }
 
 const Note = () => {
+  const dummyData = useRecoilValue(dummyState)
+  store.set('2022-06-05', dummyData)
   const dateArr = store
     .keys()
     .filter((date) => date.startsWith('20'))
@@ -20,8 +24,10 @@ const Note = () => {
       <main>
         <h1>나의수첩</h1>
         <Menu />
-        {/* <button type='button'>기록 작성하기</button> */}
-        <div className={styles.contentsBox}>
+
+        <h2> 일일 혈당량과 식사, 투약 기록을 입력하고 관리하세요.</h2>
+
+        <section className={styles.contentsBox}>
           <div className={styles.tableHead}>
             <div className={styles.div1}>날짜</div>
             <div className={styles.div2}>구분</div>
@@ -73,7 +79,19 @@ const Note = () => {
               <div className={styles.div15}>{store(date).dinner.menu.map((el: any) => `∙ ${el.name} `)}</div>
             </div>
           ))}
-        </div>
+        </section>
+        <ul>
+          혈당조절 목표범위에서 벗어난 혈당 수치에는 다음과 같이 색칠되어 표시됩니다.
+          <li>
+            - 저혈당: <span className={styles.blue}>파란색</span> ( 혈당치 70mg/dL 이하){' '}
+          </li>
+          <li>
+            - 공복 고혈당: <span className={styles.pink}>핑크색</span> ( 혈당치 140mg/dL 이하){' '}
+          </li>
+          <li>
+            - 식후 저혈당: <span className={styles.orange}>주황색</span> ( 혈당치 200mg/dL 이하){' '}
+          </li>
+        </ul>
       </main>
     </div>
   )
