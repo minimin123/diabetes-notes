@@ -53,6 +53,7 @@ const ModalMenu = ({ handleClose }: IProps) => {
           <span>메모</span>
         </div>
       </section>
+      <p>* 운동기록과 메모기록 서비스는 준비 중입니다.</p>
     </div>
   )
 }
