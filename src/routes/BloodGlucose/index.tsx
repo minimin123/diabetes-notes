@@ -18,6 +18,7 @@ const BloodGlucose = () => {
   const [text, setText] = useState('')
   const [meal, setMeal] = useState('')
   const [time, setTime] = useState('')
+  const prevValue = store.get(`${dayjs(date).format('YYYY-MM-DD')}`)
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
@@ -44,11 +45,23 @@ const BloodGlucose = () => {
   useEffect(() => {
     setMeal('')
     setTime('')
-  }, [date])
+    return resetData()
+  }, [date, resetData])
 
   const navigate = useNavigate()
   const handleXClick = () => {
+    resetData()
     navigate('/note')
+  }
+
+  const getPrevValue = () => {
+    if (meal === '아침' && time === '식전') return prevValue.breakfast.before
+    if (meal === '아침' && time === '식후') return prevValue.breakfast.after
+    if (meal === '점심' && time === '식전') return prevValue.lunch.before
+    if (meal === '점심' && time === '식후') return prevValue.lunch.after
+    if (meal === '저녁' && time === '식전') return prevValue.dinner.before
+    if (meal === '저녁' && time === '식후') return prevValue.dinner.after
+    return ''
   }
 
   return (
@@ -94,7 +107,12 @@ const BloodGlucose = () => {
             )}
             {time && (
               <form onSubmit={handleSubmit}>
-                <input type='number' placeholder='혈당량을 입력해주세요.' onChange={handleTextChange} />
+                <input
+                  type='number'
+                  placeholder='혈당량을 입력해주세요.'
+                  onChange={handleTextChange}
+                  defaultValue={getPrevValue()}
+                />
                 <section>
                   <button className={styles.submit} type='submit' onClick={handleSubmit}>
                     등록하기

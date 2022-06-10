@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import DatePicker from 'components/DatePicker/DatePicker'
 import { useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { initialState } from 'recoil/diabetesNote'
 import { ToastContainer, toast } from 'react-toastify'
 import { FormEvent, MouseEvent, useEffect, useState } from 'react'
@@ -41,6 +41,9 @@ const Diet = () => {
       enabled: false,
     }
   )
+  const resetData = useResetRecoilState(initialState)
+
+  const prevValue = store.get(`${dayjs(date).format('YYYY-MM-DD')}`)
 
   const handleDietClick = (e: any) => {
     const { name, calories, carbs, protein, fat } = e.currentTarget.dataset
@@ -81,9 +84,11 @@ const Diet = () => {
     setTotalFat(0)
     setSelectedMenu([])
     toast.success('식단이 등록되었습니다.', { position: 'top-center', hideProgressBar: true })
+    resetData()
   }
 
   const navigate = useNavigate()
+
   const handleXClick = () => {
     navigate('/note')
   }
@@ -92,6 +97,17 @@ const Diet = () => {
     setText('')
     setMeal('')
   }, [date])
+
+  useEffect(() => {
+    return resetData()
+  }, [resetData])
+
+  const getPrevValue = () => {
+    if (meal === '아침') return prevValue.breakfast.menu
+    if (meal === '점심') return prevValue.lunch.menu
+    if (meal === '저녁') return prevValue.dinner.menu
+    return ''
+  }
 
   const TITLE = ['식품명', '1회제공량', '칼로리', '탄수화물', '단백질', '지방']
   return (
@@ -172,7 +188,7 @@ const Diet = () => {
             </table>
           </section>
         )}
-        {selectedMenu.length > 0 && (
+        {(selectedMenu.length > 0 || getPrevValue()?.length > 0) && (
           <SearchList
             selectedMenu={selectedMenu}
             handleSubmit={handleSubmit}
@@ -180,6 +196,7 @@ const Diet = () => {
             totalCarbs={totalCarbs}
             totalProtein={totalProtein}
             totalFat={totalFat}
+            prevValue={getPrevValue()}
           />
         )}
       </main>

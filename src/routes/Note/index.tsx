@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil'
-import { dummyState } from 'recoil/diabetesNote'
+import { dummyState, initialState } from 'recoil/diabetesNote'
 import Menu from 'routes/Menu'
 import store from 'storejs'
 import styles from './note.module.scss'
@@ -17,10 +17,10 @@ interface IMenu {
 
 const Note = () => {
   const dummyData = useRecoilValue(dummyState)
-  store.set('2022-06-05', dummyData)
+  store.set('2022-작성예시', dummyData)
   const dateArr = store
     .keys()
-    .filter((date) => date.startsWith('20'))
+    .filter((date) => date.startsWith('2022'))
     .sort()
 
   return (

@@ -17,6 +17,7 @@ const Drug = () => {
   const [date, setDate] = useState<undefined | Date>(undefined)
   const [text, setText] = useState('')
   const [meal, setMeal] = useState('')
+  const prevValue = store.get(`${dayjs(date).format('YYYY-MM-DD')}`)
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
@@ -25,7 +26,7 @@ const Drug = () => {
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const newDailyData = _.cloneDeep(store.get(`${dayjs(date).format('YYYY-MM-DD')}`))
+    const newDailyData = _.cloneDeep(prevValue)
     if (meal === '아침') newDailyData.breakfast.medication += text
     if (meal === '점심') newDailyData.lunch.medication += text
     if (meal === '저녁') newDailyData.dinner.medication += text
@@ -36,12 +37,21 @@ const Drug = () => {
     resetData()
   }
 
+  const getPrevValue = () => {
+    if (meal === '아침') return prevValue.breakfast.medication
+    if (meal === '점심') return prevValue.lunch.medication
+    if (meal === '저녁') return prevValue.dinner.medication
+    return ''
+  }
+
   useEffect(() => {
     setMeal('')
+    return resetData()
   }, [date])
 
   const navigate = useNavigate()
   const handleXClick = () => {
+    resetData()
     navigate('/note')
   }
 
@@ -78,7 +88,12 @@ const Drug = () => {
             )}
             {meal && (
               <form onSubmit={handleSubmit}>
-                <input type='text' placeholder='투약 정보를 입력해주세요.' onChange={handleTextChange} />
+                <input
+                  type='text'
+                  placeholder='투약 정보를 입력해주세요.'
+                  onChange={handleTextChange}
+                  defaultValue={getPrevValue()}
+                />
                 <section>
                   <button className={styles.submit} type='submit' onClick={handleSubmit}>
                     등록하기
