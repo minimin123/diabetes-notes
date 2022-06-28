@@ -47,7 +47,7 @@ const Drug = () => {
   useEffect(() => {
     setMeal('')
     return resetData()
-  }, [date])
+  }, [date, resetData])
 
   const navigate = useNavigate()
   const handleXClick = () => {

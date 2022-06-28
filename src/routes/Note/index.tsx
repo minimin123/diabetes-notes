@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil'
-import { dummyState, initialState } from 'recoil/diabetesNote'
+import { dummyState } from 'recoil/diabetesNote'
 import Menu from 'routes/Menu'
 import store from 'storejs'
 import styles from './note.module.scss'
