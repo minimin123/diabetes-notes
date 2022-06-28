@@ -17,7 +17,7 @@ interface IMenu {
 
 const Note = () => {
   const dummyData = useRecoilValue(dummyState)
-  store.set('2022-작성예시', dummyData)
+  store.set('2022-00-00', dummyData)
   const dateArr = store
     .keys()
     .filter((date) => date.startsWith('2022'))
